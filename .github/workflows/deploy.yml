@@ -41,7 +41,14 @@ jobs:
           script: |
             docker pull sadekomrane/backend:latest
             docker pull sadekomrane/frontend:latest
+
             docker stop backend frontend || true
             docker rm backend frontend || true
+
             docker run -d --name backend -p 9000:9000 sadekomrane/backend:latest
-            docker run -d --name frontend -p 80:80 sadekomrane/frontend:latest
+
+            docker run -d \
+              --name frontend \
+              -p 80:80 \
+              --add-host=host.docker.internal:host-gateway \
+              sadekomrane/frontend:latest
