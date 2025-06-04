@@ -83,44 +83,6 @@ export const dashboardAdminNavItems: NavItem[] = [
     route: 'dashboard/testmonials',
   },
   {
-    navCap: 'Ui Components',
-  },
-  {
-    displayName: 'Badge',
-    iconName: 'archive',
-    route: 'dashboard/ui-components/badge',
-  },
-  {
-    displayName: 'Chips',
-    iconName: 'info-circle',
-    route: 'dashboard/ui-components/chips',
-  },
-  {
-    displayName: 'Lists',
-    iconName: 'list-details',
-    route: 'dashboard/ui-components/lists',
-  },
-  {
-    displayName: 'Menu',
-    iconName: 'file-text',
-    route: 'dashboard/ui-components/menu',
-  },
-  {
-    displayName: 'Tooltips',
-    iconName: 'file-text-ai',
-    route: 'dashboard/ui-components/tooltips',
-  },
-  {
-    displayName: 'Forms',
-    iconName: 'clipboard-text',
-    route: 'dashboard/ui-components/forms',
-  },
-  {
-    displayName: 'Tables',
-    iconName: 'table',
-    route: 'dashboard/ui-components/tables',
-  },
-  {
     navCap: 'Auth',
   },
   {

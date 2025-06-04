@@ -40,13 +40,6 @@ export const DashboardRoutes: Routes = [
       ),
   },
   {
-    path: 'ui-components',
-    loadChildren: () =>
-      import('./ui-components/ui-components.routes').then(
-        (m) => m.UiComponentsRoutes
-      ),
-  },
-  {
     path: 'extra',
     loadChildren: () =>
       import('./extra/extra.routes').then((m) => m.ExtraRoutes),
