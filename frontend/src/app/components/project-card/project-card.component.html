@@ -1,0 +1,11 @@
+<mat-card class="cardWithShadow overflow-hidden">
+  <img [src]="project.e_files[0]?.id | imageUrl" alt="{{project.e_files[0]?.name}}" class="card-img w-100" mat-card-image />
+  <mat-card-content class="p-b-24 p-t-12 position-relative">
+      <a routerLink="/client/projects/{{project.id}}" mat-mini-fab color="primary" class="icon-30 cart-btn" matTooltip="Voir le project">
+          <i-tabler name="eye" class="icon-16 text-white"></i-tabler>
+      </a>
+      <mat-card-title class="f-s-14 f-w-600 m-b-10">{{project.name | excerpt: 25 }}</mat-card-title>
+      <mat-card-subtitle class="f-s-10 f-w-400 m-b-10 d-flex align-items-center"><i-tabler name="calendar" class="icon-16 m-r-4"></i-tabler>{{project.start_date | date }} to {{project.end_date | date }}</mat-card-subtitle>
+      <mat-card-content class="f-s-12 f-w-500 text-accent p-0">{{project.description | excerpt: 140 }}</mat-card-content>
+  </mat-card-content>
+</mat-card>

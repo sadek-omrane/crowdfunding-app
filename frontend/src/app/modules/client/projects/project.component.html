@@ -1,0 +1,169 @@
+
+<div class="container m-t-64 m-b-64">
+  <mat-card class="cardWithShadow overflow-hidden p-x-16 p-y-20">
+
+      <div class="row ">
+        <div class="col-lg-6">
+          <ngx-slick-carousel class="carousel"
+            #slickModal="slick-carousel"
+            [config]="projectSlideConfig">
+            @for (e_file of project.e_files; track e_file.id) {
+              <!-- <div ngxSlickItem class="slide m-l-8 m-r-8">
+                <mat-card class="cardWithShadow projectcard overflow-hidden">
+                  <mat-card-content class="d-flex flex-column align-items-center justify-content-center">
+                    <i-tabler name="{{category.icon}}" class="icon-30 text-primary m-b-10"></i-tabler>
+                    <mat-card-title class="f-s-12 f-w-600">{{category.name}}</mat-card-title>
+                  </mat-card-content>
+                </mat-card>
+              </div> -->
+              <img [src]="e_file?.id | imageUrl" alt="{{e_file?.name}}" ngxSlickItem class="slide project-img"/>
+            }
+          </ngx-slick-carousel>
+
+        </div>
+        <div class="col-lg-6">
+          <h2 class="f-s-20 f-w-700 m-y-0">{{project.name}}</h2>
+
+          <span class="d-flex align-items-center m-y-12">
+            <i-tabler name="calendar" class="icon-24 m-r-4"></i-tabler>
+            <span class="d-block f-s-12 f-w-400">From {{project.start_date | date }} To {{project.end_date | date }}</span>
+          </span>
+
+          <p class="m-y-0">{{project.description}}</p>
+
+          <mat-progress-bar class="m-y-24" mode="determinate" value="40" color="primary"></mat-progress-bar>
+
+          <div class="d-flex justify-content-between m-b-24">
+            <div class="d-flex align-items-center">
+              <i-tabler name="coins" class="icon-24 m-r-10"></i-tabler>
+              <div>
+                <span class="d-block f-s-14 f-w-600">$64,520</span>
+                <span class="d-block f-s-12 f-w-500 text-accent">Total raised</span>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-center">
+              <i-tabler name="calendar" class="icon-24 m-r-10"></i-tabler>
+              <div>
+                <span class="d-block f-s-14 f-w-600">180</span>
+                <span class="d-block f-s-12 f-w-500 text-accent">Days to go</span>
+              </div>
+            </div>
+
+            <div class="d-flex align-items-center">
+              <i-tabler name="users-group" class="icon-24 m-r-10"></i-tabler>
+              <div>
+                <span class="d-block f-s-14 f-w-600">63</span>
+                <span class="d-block f-s-12 f-w-500 text-accent">Total doners</span>
+              </div>
+            </div>
+          </div>
+          <form>
+            <!-- <mat-radio-group formControlName="amount" class="row">
+              <div class="col-4">
+                <mat-radio-button value="5"color="primary">5 Eur</mat-radio-button>
+              </div>
+              <div class="col-4">
+                <mat-radio-button value="5"color="primary">5 Eur</mat-radio-button>
+              </div>
+              <div class="col-4">
+                <mat-radio-button value="5"color="primary">5 Eur</mat-radio-button>
+              </div>
+            </mat-radio-group>
+            <mat-form-field appearance="outline" class="w-100 m-t-10">
+              <mat-label>Montant</mat-label>
+              <input
+                matInput
+                formControlName="amount"
+                type="number"
+                placeholder="Montant"
+                required
+              />
+              <mat-icon matSuffix>
+                <i-tabler name="currency-euro" class="icon-18"></i-tabler>
+              </mat-icon>
+            </mat-form-field> -->
+            <button mat-flat-button color="primary" class="p-x-48 p-y-20 w-100">Donate</button>
+          </form>
+          <hr class="m-y-24">
+          <div class="rounded bg-light-warning text-warning p-x-16 p-y-10">
+            <p class="f-s-12 f-w-400 m-0">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate expedita illo quasi vel aliquam, sapiente porro quis ullam nulla repellat, optio sint quia iure sunt et. Quibusdam placeat temporibus facilis.
+            </p>
+          </div>
+        </div>
+      </div>
+  </mat-card>
+
+  <!-- <div class="row">
+    <div class="col-lg-6">
+      <mat-card class="cardWithShadow">
+        <mat-card-content>
+          <h4 class="m-b-16">Faites un don</h4>
+
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div> -->
+  <div class="row m-y-48">
+    <div class="col-lg-9">
+      <h3 class="m-t-0 f-s-16 f-w-700">Donations</h3>
+      <mat-card class="cardWithShadow">
+        <mat-card-content>
+          <div class="table-responsive">
+            <table mat-table [dataSource]="dataSource1" class="w-100">
+              <!-- Position Column -->
+              <ng-container matColumnDef="name">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  class="f-w-600 mat-subtitle-1 f-s-14 p-l-0"
+                >
+                  Nom et prénom
+                </th>
+                <td mat-cell *matCellDef="let element" class="p-l-0">
+                  <div class="d-flex align-items-center">
+                    <img
+                      [src]="element.imagePath"
+                      alt="users"
+                      width="60"
+                      class="rounded"
+                    />
+                    <div class="m-l-16">
+                      <h6 class="mat-subtitle-1 f-s-14 f-w-600">
+                        {{ element.name }}
+                      </h6>
+                    </div>
+                  </div>
+                </td>
+              </ng-container>
+
+              <!-- Amount Column -->
+              <ng-container matColumnDef="amount">
+                <th
+                  mat-header-cell
+                  *matHeaderCellDef
+                  class="f-w-600 mat-subtitle-1 f-s-14"
+                >
+                  Montant
+                </th>
+                <td mat-cell *matCellDef="let element">
+                  <h6 class="mat-subtitle-1 f-s-14 f-w-600">
+                    {{ element.amount }}
+                  </h6>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns1"></tr>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="col-lg-3">
+      <h3 class="m-t-0 f-s-16 f-w-700">Support other projects</h3>
+      <app-project-card [project]="similarProject"></app-project-card>
+    </div>
+  </div>
+</div>

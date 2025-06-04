@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./backend:/var/www
+    environment:
+      - DB_HOST=mysql
+      - DB_DATABASE=your_db_name
+      - DB_USERNAME=root
+      - DB_PASSWORD=your_password
+    depends_on:
+      - mysql
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: your_password
+      MYSQL_DATABASE: your_db_name
+    volumes:
+      - dbdata:/var/lib/mysql
+
+volumes:
+  dbdata:

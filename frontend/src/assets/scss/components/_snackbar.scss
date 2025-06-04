@@ -1,0 +1,29 @@
+.snackbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+   .snack-close{
+    color: $light;
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 12px;
+    font-weight: 400;
+   }
+}
+.success-snackbar{
+  .snack-msg{
+    font-size: 12px;
+    font-weight: 400;
+    color: $white;
+   }
+}
+
+.error-snackbar{
+  .snack-msg{
+    font-size: 12px;
+    font-weight: 400;
+    color: $error;
+   }
+}

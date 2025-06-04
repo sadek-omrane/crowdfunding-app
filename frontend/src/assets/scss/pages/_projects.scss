@@ -1,0 +1,24 @@
+.projects-container{
+
+}
+
+.uploaded-image{
+  position: relative;
+  img{
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid $borderColor;
+  }
+  .delete-image-btn{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    color: $danger;
+  }
+}

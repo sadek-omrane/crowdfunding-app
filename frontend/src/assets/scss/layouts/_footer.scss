@@ -1,0 +1,36 @@
+.footer{
+    background-color: $primary;
+    padding: 40px 0;
+    .footer-content{
+        display: flex;
+        justify-content: space-between;
+        ul{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li{
+                margin-bottom: 10px;
+                color: $white;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                a{
+                    color: $white;
+                    text-decoration: none;
+                    font-size: 12px;
+                    &:hover{
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+        h4{
+            color: $white;
+            margin-top: 0;
+        }
+
+        i-tabler{
+            stroke: $white !important;
+        }
+    }
+}

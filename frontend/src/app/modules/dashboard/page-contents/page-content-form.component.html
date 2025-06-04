@@ -1,0 +1,53 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <mat-card-title class="m-b-0">Form</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="b-t-1">
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-lg-6">
+          <mat-label class="f-w-600 m-b-8 d-block">Titre</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="Tapez le titre de page" formControlName="title"/>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+          <mat-label class="f-w-600 m-b-8 d-block">Slug</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput type="text" placeholder="Tapez le slug" formControlName="slug"/>
+          </mat-form-field>
+        </div>
+
+        <div class="col-lg-6">
+          <mat-label class="f-w-600 m-b-8 d-block">Statut</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-select [value]="form.get('status')?.value" formControlName="status">
+              @for(option of status; track option) {
+              <mat-option [value]="option.value">{{
+                option.label
+              }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div class="col-12">
+          <mat-label class="f-w-600 m-b-8 d-block">
+            Contenu
+          </mat-label>
+          <mat-card class="cardWithShadow theme-card">
+            <mat-card-header>
+              <ngx-editor-menu [editor]="editor" [toolbar]="toolbar" [colorPresets]="colorPresets">
+              </ngx-editor-menu>
+            </mat-card-header>
+            <mat-card-content class="b-t-1">
+              <ngx-editor [editor]="editor" [formControl]="form.controls['content']" placeholder="Tapez le contenu de page">
+              </ngx-editor>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </div>
+      <button mat-flat-button color="primary" class="h-100 m-b-12 p-t-8 p-b-8 p-r-24 p-l-24" (click)="submit()">{{id ? 'Modifier' : 'Enregistrer'}}</button>
+    </form>
+  </mat-card-content>
+</mat-card>

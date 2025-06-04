@@ -1,0 +1,90 @@
+<mat-card class="cardWithShadow theme-card">
+  <mat-card-header>
+    <mat-card-title class="m-b-0">Form</mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="b-t-1">
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-lg-6">
+          <mat-label class="f-w-600 m-b-8 d-block">Owner</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-select [value]="form.get('user_id')?.value" formControlName="user_id">
+              @for(option of users; track option) {
+                <mat-option [value]="option.id">
+                  {{option.name}}
+                </mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+          <mat-label class="f-w-600 m-b-8 d-block">Nom de projet</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput placeholder="tapez le nom de projet" formControlName="name"/>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+          <mat-label class="f-w-600 m-b-8 d-block">Date de début</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput type="text" placeholder="yyyy-mm-jj" formControlName="start_date"/>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+          <mat-label class="f-w-600 m-b-8 d-block">Date de fin</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput type="text" placeholder="yyyy-mm-jj" formControlName="end_date"/>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+          <mat-label class="f-w-600 m-b-8 d-block">Objectif</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput type="text" placeholder="tapez l'objectif" formControlName="goal"/>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+          <mat-label class="f-w-600 m-b-8 d-block">Description</mat-label>
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <textarea matInput placeholder="tapez la description" rows="4" formControlName="description"></textarea>
+          </mat-form-field>
+        </div>
+        <!--upload project image-->
+        <div class="col-lg-6">
+          <mat-label for="images" class="f-w-600 m-b-8 d-block">Images</mat-label>
+
+          <mat-form-field appearance="outline" class="w-100" color="primary">
+            <input matInput formArrayName="e_files" readonly class="d-none"/>
+            <input  #uploadInput type="file" (change)="onFileChange($event)" multiple hidden/>
+
+            <!-- show uploaded images-->
+            <div class="d-flex flex-wrap m-t-8">
+              @for(file of form.get('e_files')?.value; track file.id) {
+                <div class="uploaded-image m-r-8">
+                  <img [src]="file.id | imageUrl" alt="image" width="120" height="170"/>
+                  <button mat-icon-button (click)="removeFile(file.id)" type="button" class="delete-image-btn">
+                    <i-tabler name="trash"></i-tabler>
+                  </button>
+                </div>
+              }
+            </div>
+            <button mat-icon-button matSuffix (click)="chooseFile()" type="button">
+              <i-tabler name="paperclip" ></i-tabler>
+            </button>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-6">
+          <mat-label class="f-w-600 m-b-8 d-block">Statut</mat-label>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-select [value]="form.get('status')?.value" formControlName="status">
+              @for(option of status; track option) {
+              <mat-option [value]="option.value">{{
+                option.label
+              }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <button mat-flat-button color="primary" class="h-100 m-b-12 p-t-8 p-b-8 p-r-24 p-l-24" (click)="submit()">{{id ? 'Modifier' : 'Enregistrer'}}</button>
+    </form>
+  </mat-card-content>
+</mat-card>

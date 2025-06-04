@@ -1,0 +1,73 @@
+<h2 mat-dialog-title>Completer votre paiement</h2>
+<mat-dialog-content>
+  <mat-stepper orientation="horizontal" linear #stepper
+    (selectionChange)="onSelectionChange($event)">
+    <mat-step [stepControl]="form">
+      <form [formGroup]="form">
+        <ng-template matStepLabel>
+          <span class="d-block f-s-14 f-w-500 text-accent">Project</span>
+        </ng-template>
+        <mat-label class="f-w-500 m-b-8 d-block">Project</mat-label>
+        <mat-form-field appearance="outline" class="w-100">
+          <input type="text" matInput
+            formControlName="project"
+            placeholder="Choose your project"
+            [matAutocomplete]="auto"
+            required>
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            @for (option of filteredProjects | async; track option) {
+              <mat-option [value]="option">
+                {{option.name}}
+              </mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
+        <mat-radio-group formControlName="amount" class="row">
+          <div class="col-4">
+            <mat-radio-button value="200"color="primary">2 Eur</mat-radio-button>
+          </div>
+          <div class="col-4">
+            <mat-radio-button value="500"color="primary">5 Eur</mat-radio-button>
+          </div>
+          <div class="col-4">
+            <mat-radio-button value="1000"color="primary">10 Eur</mat-radio-button>
+          </div>
+        </mat-radio-group>
+        <mat-form-field appearance="outline" class="w-100 m-t-10">
+          <mat-label>Montant</mat-label>
+          <input
+            matInput
+            formControlName="amount"
+            type="number"
+            placeholder="Montant"
+            required
+          />
+          <mat-icon matSuffix>
+            <i-tabler name="currency-euro" class="icon-18"></i-tabler>
+          </mat-icon>
+        </mat-form-field>
+      </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>
+          <span class="d-block f-s-14 f-w-500 text-accent">Payment</span>
+        </ng-template>
+        @if (elementsOptions.clientSecret) {
+          <ngx-stripe-elements
+            [stripe]="stripe"
+            [elementsOptions]="elementsOptions">
+            <ngx-stripe-payment [options]="paymentElementOptions" (change)="onChange($event)"/>
+          </ngx-stripe-elements>
+        }
+    </mat-step>
+  </mat-stepper>
+  <div class="m-t-12">
+    <button mat-flat-button cdkFocusInitial color="primary" type="submit" (click)="pay()" class="m-r-8">
+      payer
+    </button>
+    <button mat-stroked-button mat-dialog-close color="secondary">Cancel</button>
+  </div>
+</mat-dialog-content>
+
+
+
