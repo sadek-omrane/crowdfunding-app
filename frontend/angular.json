@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "terre-de-jasmin-web": {
+    "frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -22,7 +22,7 @@
               "bezier-easing",
               "moment"
             ],
-            "outputPath": "dist/terre-de-jasmin-web",
+            "outputPath": "dist/frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -82,10 +82,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "terre-de-jasmin-web:build:production"
+              "buildTarget": "frontend:build:production"
             },
             "development": {
-              "buildTarget": "terre-de-jasmin-web:build:development"
+              "buildTarget": "frontend:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -93,7 +93,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "buildTarget": "terre-de-jasmin-web:build"
+            "buildTarget": "frontend:build"
           }
         },
         "test": {
