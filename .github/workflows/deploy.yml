@@ -45,10 +45,15 @@ jobs:
             docker stop backend frontend || true
             docker rm backend frontend || true
 
-            docker run -d --name backend -p 9000:9000 sadekomrane/backend:latest
+            docker network rm app-network || true
+            docker network create app-network
 
-            docker run -d \
-              --name frontend \
+            docker run -d --name backend \
+              --network app-network \
+              -p 9000:9000 \
+              sadekomrane/backend:latest
+
+            docker run -d --name frontend \
+              --network app-network \
               -p 80:80 \
-              --add-host=host.docker.internal:host-gateway \
               sadekomrane/frontend:latest
